@@ -1,7 +1,7 @@
 export default {
   pages: [
-    'pages/index/index',
-    'pages/alertjob/AlertJob'
+    'pages/alertjob/alertJob',
+    'pages/index/index'
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -16,16 +16,17 @@ export default {
     backgroundColor: '#ffffff',
     list: [
       {
+        text: '工单',
+        pagePath: 'pages/alertjob/alertJob',
+        // iconPath: 'assets/images/love.png',
+        // selectedIconPath: 'assets/images/selected-love.png',
+      },
+      {
         text: '首页',
+        // pagePath: 'pages/index/index',
         pagePath: 'pages/index/index',
         // iconPath: 'assets/images/music.png',
         // selectedIconPath: 'assets/images/selected-music.png',
-      },
-      {
-        text: '工单',
-        pagePath: 'pages/index/index',
-        // iconPath: 'assets/images/love.png',
-        // selectedIconPath: 'assets/images/selected-love.png',
       },
       {
         text: '团队',
