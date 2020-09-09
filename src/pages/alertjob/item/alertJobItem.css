@@ -12,13 +12,6 @@
   margin: 15px;
 }
 
-.dot {
-  position: absolute;
-  top: 262px;
-  left: 351px;
-  width: 3px;
-  height: 6px;
-}
 
 .txt {
   position: relative;
@@ -60,7 +53,7 @@
   display: flex;
   position: relative;
   align-items: flex-start;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin-top: 114px;
   margin-left: 44px;
@@ -69,28 +62,19 @@
 }
 
 .shopTitle_1 {
-  webkit-line-clamp: 2px;
-  margin-top: 1px;
-  width: 120px;
-  height: 96px;
+  width: max-content;
+  height: 44px;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 42px;
   color: #b1b1b1;
-  font-size: 29px;
+  font-size: 31px;
   font-weight: 400;
-}
-
-.wrap {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  height: 109px;
 }
 
 .title {
   position: relative;
-  max-width: 282px;
+  max-width: max-content;
   height: 44px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -101,16 +85,6 @@
   font-weight: 400;
 }
 
-.word {
-  position: relative;
-  margin-top: 23px;
-  line-height: 42px;
-  white-space: nowrap;
-  color: #b1b1b1;
-  font-family: Rubik;
-  font-size: 31px;
-  font-weight: 400;
-}
 
 .main {
   display: flex;
@@ -128,7 +102,7 @@
   line-height: 42px;
   white-space: nowrap;
   color: #b1b1b1;
-  font-size: 29px;
+  font-size: 31px;
   font-weight: 400;
 }
 
@@ -139,7 +113,12 @@
   font-size: 29px;
   font-weight: 400;
 }
-
+.line{
+  background: rgba(241,202,99,0.11);
+  width: 720px;
+  height: 1px;
+  margin-top: 64px;
+}
 .ft {
   display: flex;
   position: relative;
@@ -147,17 +126,10 @@
   align-self: center;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 74px;
+  margin-top: auto;
+  margin-bottom: auto;
   width: 652px;
   height: 48px;
-}
-
-.dot_1 {
-  position: absolute;
-  top: 22px;
-  right: 1px;
-  width: 3px;
-  height: 6px;
 }
 
 .word_1 {

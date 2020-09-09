@@ -1,7 +1,9 @@
 export default {
   pages: [
     'pages/alertjob/alertJob',
-    'pages/index/index'
+    'pages/alertjob/detail/alertJobDetail',
+    'pages/index/index',
+
   ],
   window: {
     backgroundTextStyle: 'light',
