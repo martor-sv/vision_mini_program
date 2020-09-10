@@ -1,3 +1,5 @@
+@import "~taro-ui/dist/style/components/timeline.scss";
+
 #box {
   display: flex;
   width: 100%;
@@ -64,14 +66,18 @@
 }
 
 .at_time_line {
-  margin-left: 40px;
+  margin-left: 80px;
   margin-top: 80px;
 }
 
-/*.at_time_line */
-/*taro-checkbox-core, taro-checkbox-group-core, taro-radio-core, taro-radio-group-core, taro-swiper-core, taro-swiper-item-core, taro-audio-core, taro-block-core, taro-button-core, taro-camera-core, taro-canvas-core, taro-cover-image-core, taro-cover-view-core, taro-form-core, taro-icon-core, taro-image-core, taro-input-core, taro-label-core, taro-moveable-area-core, taro-moveable-view-core, taro-navigator-core, taro-open-data-core, taro-picker-view-column-core, taro-picker-view-core, taro-progress-core, taro-pull-to-refresh, taro-rich-text-core, taro-scroll-view-core, taro-slider-core, taro-switch-core, taro-tabbar, taro-text-core, taro-textarea-core, taro-view-core, taro-web-view-core, taro-picker-core, taro-picker-group, taro-video-core, taro-video-control, taro-video-danmu {*/
-/*  font-size: 35px;*/
-/*}*/
-/*.at-icon{*/
-/*  font-size: 20px;*/
-/*}*/
+
+.at-timeline-item__content-item {
+  padding: 0px 0px 10px 0px;
+  font-size: 35px;
+}
+
+.at-timeline-item__content--sub {
+  font-size: 28px;
+}
+
+

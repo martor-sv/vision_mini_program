@@ -1,8 +1,9 @@
 export default {
   pages: [
     'pages/alertjob/alertJob',
-    'pages/alertjob/detail/alertJobDetail',
     'pages/index/index',
+    'pages/team/team',
+    'pages/alertjob/detail/alertJobDetail',
 
   ],
   window: {

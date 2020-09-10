@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import {Image, Text, View} from "@tarojs/components";
-import './alertJobDetail.css';
+import './alertJobDetail.scss';
 import {AtTimeline} from 'taro-ui'
 
-import "taro-ui/dist/style/components/timeline.scss";
 import "taro-ui/dist/style/components/icon.scss";
 
 export default class AlertJobDetail extends Component {
