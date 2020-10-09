@@ -33,7 +33,7 @@ export default {
       },
       {
         text: '团队',
-        pagePath: 'pages/index/index',
+        pagePath: 'pages/team/team',
         // iconPath: 'assets/images/me.png',
         // selectedIconPath: 'assets/images/selected-me.png',
       }

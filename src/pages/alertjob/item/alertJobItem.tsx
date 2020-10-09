@@ -1,5 +1,7 @@
+// @ts-ignore
 import React, {Component} from "react";
 
+// @ts-ignore
 import Taro from "@tarojs/taro"
 import {Image, Text, View} from "@tarojs/components";
 import './alertJobItem.css'

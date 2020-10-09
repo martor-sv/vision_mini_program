@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, {Component} from 'react'
 import {Text, View} from '@tarojs/components'
 
@@ -6,7 +7,6 @@ import {Text, View} from '@tarojs/components'
 // import "taro-ui/dist/style/components/badge.scss";
 import "taro-ui/dist/style/components/card.scss";
 import './index.scss'
-import {AtCard} from "taro-ui";
 
 export default class Index extends Component {
 
@@ -40,50 +40,36 @@ export default class Index extends Component {
   render() {
     return (
       <View className='index'>
-        {
-          this.state.listdata.map((item, index) => {
-            return <AtCard className={'card'} title={"出警通知"} onClick={function () {
+        <Text className="time_title">较上期环比：前90天（2019-08-30-2019-11-27）</Text>
 
-            }}>
-              <Text className={'a'}>{item.valueOf()}</Text>
-            </AtCard>
-          })
-        }
+        <View className="box">
 
+          <View className="box_1">
+            <Text className='content_style'>智能报警</Text>
+            <Text className='content_style'>123个</Text>
+            <Text className='content_style_data1'>50%⬆</Text>
+          </View>
 
-        {/*<AtButton onClick={function () {*/}
-        {/*  Taro.getSetting({*/}
-        {/*    success: function (result) {*/}
-        {/*      if (!result.authSetting['scope.userInfo']) {*/}
-        {/*        Taro.authorize({*/}
-        {/*          scope: 'scope.userInfo',*/}
-        {/*          success: function () {*/}
-        {/*            Taro.getUserInfo({*/}
-        {/*              success: function (res) {*/}
-        {/*                var userInfo = res.userInfo*/}
-        {/*                console.log(userInfo.nickName)*/}
+          <View className="box_1">
+            <Text className='content_style'>报警器</Text>
+            <Text className='content_style'>12个</Text>
+            <Text className='content_style_data2'>30%⬆</Text>
+          </View>
 
-        {/*                console.log(userInfo)*/}
-        {/*              }*/}
-        {/*            })*/}
-        {/*          }*/}
-        {/*        })*/}
-        {/*      } else {*/}
-        {/*        Taro.getUserInfo({*/}
-        {/*          success: function (res) {*/}
-        {/*            var userInfo = res.userInfo*/}
-        {/*            console.log(userInfo.nickName)*/}
+          <View className="box_1">
+            <Text className='content_style'>来电报警</Text>
+            <Text className='content_style'>123个</Text>
+            <Text className='content_style_data3'>50%⬆</Text>
+          </View>
 
-        {/*            console.log(userInfo)*/}
-        {/*          }*/}
-        {/*        })*/}
-        {/*      }*/}
-        {/*    }*/}
-        {/*  })*/}
+          <View className="box_1">
+            <Text className='content_style'>已处置报警</Text>
+            <Text className='content_style'>123个</Text>
+            <Text className='content_style_data4'>-50%⬇</Text>
+          </View>
 
-        {/*}}>*/}
-        {/*  授权登陆*/}
-        {/*</AtButton>*/}
+        </View>
+
 
       </View>
     )

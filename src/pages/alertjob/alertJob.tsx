@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, {Component} from 'react'
 import {View} from '@tarojs/components'
 
