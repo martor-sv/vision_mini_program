@@ -1,6 +1,6 @@
 // @ts-ignore
 import React, {Component} from 'react'
-import {Text, View} from '@tarojs/components'
+import {Icon, Text, View} from '@tarojs/components'
 
 // import "taro-ui/dist/style/components/button.scss" // 按需引入
 // import "taro-ui/dist/style/components/tab-bar.scss";
@@ -29,6 +29,7 @@ export default class Index extends Component {
     current: 0,
     listdata: [1, 2, 15, 12, 45, 44]
   }
+
 
   handleClick(value) {
     this.setState({
@@ -68,6 +69,42 @@ export default class Index extends Component {
             <Text className='content_style_data4'>-50%⬇</Text>
           </View>
 
+        </View>
+
+        <View className='disposal_rate'>
+          处置率
+        </View>
+
+        <View className="express">
+          <Text className="express_title">快报</Text>
+          <Text className="data_info">数据说明</Text>
+        </View>
+
+        <View className="express_data">
+
+          <View className='box_2'>
+            <Icon className="content_style" type="clear"/>
+            <Text className="content_style">18KM</Text>
+            <Text className="content_style">出警均里程</Text>
+          </View>
+
+          <View className='box_2'>
+            <Icon className="content_style" type="download"/>
+            <Text className="content_style">5.52h</Text>
+            <Text className="content_style">出警均用时</Text>
+          </View>
+
+          <View className='box_2'>
+            <Icon className="content_style" type="success"/>
+            <Text className="content_style">3.2min</Text>
+            <Text className="content_style">响应均用时</Text>
+          </View>
+
+          <View className='box_2'>
+            <Icon className="content_style" type="info"/>
+            <Text className="content_style">85个</Text>
+            <Text className="content_style">均出警量</Text>
+          </View>
         </View>
 
 
