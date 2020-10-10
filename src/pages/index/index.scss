@@ -1,6 +1,14 @@
+@import "~taro-ui/dist/style/components/divider.scss";
+@import "~taro-ui/dist/style/components/grid.scss";
+
 .at-card {
   margin: 24px;
 }
+
+.at-divider{
+  height: 1px;
+}
+
 
 .time_title {
   font-size: 24px;
@@ -64,18 +72,24 @@
 }
 
 .express_title {
+  margin-left: 20px;
   margin-bottom: auto;
   margin-top: auto;
   font-size: 28px;
 }
 
 .data_info {
+  margin-right: 20px;
   margin-bottom: auto;
   margin-top: auto;
+  color: #1890FF;
   font-size: 24px;
 }
 
 .express_data{
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
   display: flex;
   justify-content: space-between;
 }

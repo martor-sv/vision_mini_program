@@ -6,7 +6,9 @@ import {Icon, Text, View} from '@tarojs/components'
 // import "taro-ui/dist/style/components/tab-bar.scss";
 // import "taro-ui/dist/style/components/badge.scss";
 import "taro-ui/dist/style/components/card.scss";
+
 import './index.scss'
+import {AtDivider, AtGrid} from "taro-ui";
 
 export default class Index extends Component {
 
@@ -27,7 +29,29 @@ export default class Index extends Component {
 
   state = {
     current: 0,
-    listdata: [1, 2, 15, 12, 45, 44]
+    listdata: [1, 2, 15, 12, 45, 44],
+    tempData: [{
+      value: '排名'
+    }, {
+      value: '门店'
+    }, {
+      value: '报警量'
+    }, {
+      value: '1'
+    }, {
+      value: 'xxxdain'
+    }, {
+      value: '12'
+    }, {
+      value: '2'
+    }, {
+      value: 'xxxdain'
+    }, {
+      value: '123'
+    },
+
+
+    ]
   }
 
 
@@ -79,6 +103,7 @@ export default class Index extends Component {
           <Text className="express_title">快报</Text>
           <Text className="data_info">数据说明</Text>
         </View>
+        <AtDivider lineColor="#fafafa" height={1}/>
 
         <View className="express_data">
 
@@ -107,6 +132,13 @@ export default class Index extends Component {
           </View>
         </View>
 
+        <View>
+          <Text className="express_title">门店报警排行榜</Text>
+          <AtDivider lineColor="#fafafa" height={1}/>
+
+        </View>
+
+        <AtGrid data={this.state.tempData} columnNum={3} mode="rect"/>
 
       </View>
     )
