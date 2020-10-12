@@ -65,6 +65,13 @@ export default class Index extends Component {
   render() {
     return (
       <View className='index'>
+
+        <View className='header_date'>
+          <Text className='header'>2020-01-01~2020-05-15</Text>
+          <Text className='header'>5个门店</Text>
+        </View>
+
+
         <Text className="time_title">较上期环比：前90天（2019-08-30-2019-11-27）</Text>
 
         <View className="box">
@@ -96,7 +103,7 @@ export default class Index extends Component {
         </View>
 
         <View className='disposal_rate'>
-          处置率
+          <Text className='title_2'>处置率</Text>
         </View>
 
         <View className="express">
@@ -132,9 +139,9 @@ export default class Index extends Component {
           </View>
         </View>
 
-        <View>
+        <View >
           <Text className="express_title">门店报警排行榜</Text>
-          <AtDivider lineColor="#fafafa" height={1}/>
+          {/*<AtDivider lineColor="#fafafa" height={1}/>*/}
 
         </View>
 

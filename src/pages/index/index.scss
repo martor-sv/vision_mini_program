@@ -5,12 +5,27 @@
   margin: 24px;
 }
 
-.at-divider{
+.at-divider {
   height: 1px;
+}
+
+.header_date {
+  width: 100%;
+  height: 50px;
+  //background: bisque;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header_date .header {
+  margin: auto 20px;
+  font-size: 24px;
 }
 
 
 .time_title {
+  height: 50px;
+  margin: auto 20px;
   font-size: 24px;
   display: block;
 }
@@ -54,12 +69,16 @@
 }
 
 .disposal_rate {
-  //position: fixed;
+  margin:20px;
   background: pink;
   height: 300px;
 }
 
-.box_1{
+.title_2{
+  font-size: 30px;
+}
+
+.box_1 {
   //justify-content: center;
   //align-self: center;
 }
@@ -86,7 +105,7 @@
   font-size: 24px;
 }
 
-.express_data{
+.express_data {
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
@@ -94,7 +113,7 @@
   justify-content: space-between;
 }
 
-.box_2{
+.box_2 {
   border-radius: 15px;
   height: 130px;
   padding: 20px;
