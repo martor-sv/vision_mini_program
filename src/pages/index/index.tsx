@@ -11,18 +11,15 @@ import './index.scss'
 import {AtDivider, AtGrid} from "taro-ui";
 import * as echarts from '../../components/ec-canvas/echarts'
 
-function initChart(canvas, width, height) {
+function initChart(canvas, width, height, dpr) {
   const chart = echarts.init(canvas, null, {
     width: width,
-    height: height
+    height: height, devicePixelRatio: dpr
   })
   canvas.setChart(chart)
 
 
   const option = {
-    tooltip: {
-      trigger: 'axis'
-    },
     grid: {
       left: '3%',
       right: '4%',
@@ -32,7 +29,7 @@ function initChart(canvas, width, height) {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: ['10-01', '10-02', '10-03', '10-04', '10-05']
+      data: ['10-01', '10-02', '10-03', '10-04', '10-05', '10-06', '10-07']
     },
     yAxis: {
       type: 'value'
@@ -41,9 +38,17 @@ function initChart(canvas, width, height) {
       name: '报警数据',
       data: [820, 932, 901, 934, 1290, 1330, 1320, 1450, 1600],
       type: 'line',
-      stack: '总量',
+      color: 'rgba(225, 130, 51, 1)',
+      smooth: true
+    }, {
+      name: '已处置',
+      data: [300, 902, 801, 734, 990, 430, 620, 850, 100],
+      type: 'line',
+      color: 'rgba(164, 200, 255, 1)',
       smooth: true
     }]
+
+
   };
 
 
@@ -181,7 +186,7 @@ export default class Index extends Component {
           </View>
         </View>
 
-        <View >
+        <View>
           <Text className="express_title">门店报警排行榜</Text>
           {/*<AtDivider lineColor="#fafafa" height={1}/>*/}
 
