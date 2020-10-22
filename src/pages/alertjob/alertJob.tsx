@@ -7,7 +7,10 @@ import "taro-ui/dist/style/components/tab-bar.scss";
 import "taro-ui/dist/style/components/badge.scss";
 import AlertJobItem from "./item/alertJobItem";
 
+var alertdata = [1, 2, 3, 4, 5];
+
 export default class AlertJob extends Component {
+
 
   componentWillMount() {
   }
@@ -35,12 +38,11 @@ export default class AlertJob extends Component {
   }
 
   render() {
-
     return (
       <View className='index'>
-        <AlertJobItem id={11}></AlertJobItem>
-        <AlertJobItem id={11}></AlertJobItem>
-        <AlertJobItem id={11}></AlertJobItem>
+        {alertdata.map((value, index,) => {
+          return <AlertJobItem id={122}/>
+        })}
       </View>
     )
   }

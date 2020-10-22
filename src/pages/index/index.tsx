@@ -11,6 +11,9 @@ import './index.scss'
 import {AtDivider, AtGrid} from "taro-ui";
 import * as echarts from '../../components/ec-canvas/echarts'
 
+
+var alertdata = [];
+
 function initChart(canvas, width, height, dpr) {
   const chart = echarts.init(canvas, null, {
     width: width,
@@ -18,8 +21,10 @@ function initChart(canvas, width, height, dpr) {
   })
   canvas.setChart(chart)
 
-
   const option = {
+    tooltip: {
+      trigger: 'axis'
+    },
     grid: {
       left: '3%',
       right: '4%',
@@ -36,7 +41,7 @@ function initChart(canvas, width, height, dpr) {
     },
     series: [{
       name: '报警数据',
-      data: [820, 932, 901, 934, 1290, 1330, 1320, 1450, 1600],
+      data: alertdata,
       type: 'line',
       color: 'rgba(225, 130, 51, 1)',
       smooth: true
@@ -47,11 +52,90 @@ function initChart(canvas, width, height, dpr) {
       color: 'rgba(164, 200, 255, 1)',
       smooth: true
     }]
-
-
   };
+  chart.setOption(option)
+  return chart
+}
 
+function initTrendChart(canvas, width, height, dpr) {
+  const chart = echarts.init(canvas, null, {
+    width: width,
+    height: height, devicePixelRatio: dpr
+  })
+  canvas.setChart(chart)
 
+  const option = {
+    tooltip: {
+      trigger: 'axis'
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['10-01', '10-02', '10-03', '10-04', '10-05', '10-06', '10-07']
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: {
+        formatter: "{value} km/h"
+      }
+    },
+    series: [{
+      name: '速度',
+      data: alertdata,
+      type: 'line',
+      color: 'rgba(225, 130, 51, 1)',
+      smooth: true
+    }, {
+      name: '用时',
+      data: [30, 60, 20, 34, 40, 30, 62, 80, 10],
+      type: 'line',
+      color: 'rgba(164, 200, 255, 1)',
+      smooth: true
+    }]
+  };
+  chart.setOption(option)
+  return chart
+}
+
+function initTimeChart(canvas, width, height, dpr) {
+  const chart = echarts.init(canvas, null, {
+    width: width,
+    height: height, devicePixelRatio: dpr
+  })
+  canvas.setChart(chart)
+
+  const option = {
+    tooltip: {
+      trigger: 'axis'
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00']
+    },
+    yAxis: {
+      type: 'value',
+    },
+    series: [ {
+      data: [30, 60, 20, 34, 40, 30, 62, 80, 10],
+      type: 'line',
+      areaStyle: {},
+      color: 'rgba(164, 200, 255, 1)',
+      smooth: true
+    }]
+  };
   chart.setOption(option)
   return chart
 }
@@ -59,6 +143,7 @@ function initChart(canvas, width, height, dpr) {
 export default class Index extends Component {
 
   componentWillMount() {
+    alertdata =[30, 92, 81, 74, 90, 30, 60, 80, 10]
   }
 
   componentDidMount() {
@@ -98,6 +183,12 @@ export default class Index extends Component {
     ],
     ec: {
       onInit: initChart
+    }
+    ,trend:{
+      onInit:initTrendChart
+    },
+    time:{
+      onInit:initTimeChart
     }
   }
 
@@ -148,7 +239,8 @@ export default class Index extends Component {
           </View>
 
         </View>
-        <Text className='title_2'>处置率</Text>
+
+        <Text className='express_title'>处置率</Text>
         <View className='disposal_rate'>
           <ec-canvas id='mychart-dom-area' canvas-id='mychart-area' ec={this.state.ec}/>
         </View>
@@ -193,6 +285,20 @@ export default class Index extends Component {
         </View>
 
         <AtGrid data={this.state.tempData} columnNum={3} mode="rect"/>
+
+        <View>
+          <Text className="express_title">趋势分析</Text>
+        </View>
+        <View className='disposal_rate'>
+          <ec-canvas id='mychart-dom' canvas-id='mychart-area' ec={this.state.trend}/>
+        </View>
+
+        <View>
+          <Text className="express_title">报警时段分析</Text>
+        </View>
+        <View className='disposal_rate'>
+          <ec-canvas id='mychart-dom' canvas-id='mychart-area' ec={this.state.time}/>
+        </View>
 
       </View>
     )
