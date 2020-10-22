@@ -9,6 +9,47 @@ import "taro-ui/dist/style/components/card.scss";
 
 import './index.scss'
 import {AtDivider, AtGrid} from "taro-ui";
+import * as echarts from '../../components/ec-canvas/echarts'
+
+function initChart(canvas, width, height) {
+  const chart = echarts.init(canvas, null, {
+    width: width,
+    height: height
+  })
+  canvas.setChart(chart)
+
+
+  const option = {
+    tooltip: {
+      trigger: 'axis'
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['10-01', '10-02', '10-03', '10-04', '10-05']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [{
+      name: '报警数据',
+      data: [820, 932, 901, 934, 1290, 1330, 1320, 1450, 1600],
+      type: 'line',
+      stack: '总量',
+      smooth: true
+    }]
+  };
+
+
+  chart.setOption(option)
+  return chart
+}
 
 export default class Index extends Component {
 
@@ -49,9 +90,10 @@ export default class Index extends Component {
     }, {
       value: '123'
     },
-
-
-    ]
+    ],
+    ec: {
+      onInit: initChart
+    }
   }
 
 
@@ -101,9 +143,9 @@ export default class Index extends Component {
           </View>
 
         </View>
-
+        <Text className='title_2'>处置率</Text>
         <View className='disposal_rate'>
-          <Text className='title_2'>处置率</Text>
+          <ec-canvas id='mychart-dom-area' canvas-id='mychart-area' ec={this.state.ec}/>
         </View>
 
         <View className="express">

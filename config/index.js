@@ -19,6 +19,14 @@ const config = {
     }
   },
   framework: 'react',
+  weapp: {
+    compile: {
+      exclude: ['src/ec-canvas/echarts.js']
+    },
+    module: {
+
+    }
+  },
   mini: {
     postcss: {
       pxtransform: {
