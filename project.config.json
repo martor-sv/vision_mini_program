@@ -2,7 +2,7 @@
 	"miniprogramRoot": ".dist",
 	"projectname": "truth_vision_mini_program",
 	"description": "",
-	"appid": "touristappid",
+	"appid": "wx245b5076fd9b221f",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,

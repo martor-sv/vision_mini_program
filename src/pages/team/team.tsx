@@ -1,14 +1,22 @@
-// @ts-ignore
+import Taro from '@tarojs/taro'
 import React, {Component} from 'react'
 import {Text, View} from '@tarojs/components'
 
 import './team.scss'
-import {AtGrid} from "taro-ui";
+import {Constant} from "../../common/Constant";
+import ServiceImpl from "../../service/ServiceImpl";
 
 export default class Team extends Component {
 
-  componentWillMount() {
 
+  async login() {
+    let result: any  = await ServiceImpl.getInstance().login()
+    console.log('登陆返回数据：', result)
+  }
+
+
+  componentWillMount() {
+    this.login()
   }
 
   componentDidMount() {
@@ -55,6 +63,10 @@ export default class Team extends Component {
             })
           }
         </View>
+        <Text>{
+          Taro.getStorageSync(Constant.token)
+        }</Text>
+
 
       </View>
     )

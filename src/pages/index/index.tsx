@@ -1,14 +1,15 @@
 // @ts-ignore
+import {AtDivider, AtGrid} from "taro-ui";
 import React, {Component} from 'react'
-import {Icon, Text, View} from '@tarojs/components'
 
+import {Icon, Text, View} from '@tarojs/components'
 // import "taro-ui/dist/style/components/button.scss" // 按需引入
 // import "taro-ui/dist/style/components/tab-bar.scss";
 // import "taro-ui/dist/style/components/badge.scss";
+
 import "taro-ui/dist/style/components/card.scss";
 
 import './index.scss'
-import {AtDivider, AtGrid} from "taro-ui";
 import * as echarts from '../../components/ec-canvas/echarts'
 
 
@@ -128,7 +129,7 @@ function initTimeChart(canvas, width, height, dpr) {
     yAxis: {
       type: 'value',
     },
-    series: [ {
+    series: [{
       data: [30, 60, 20, 34, 40, 30, 62, 80, 10],
       type: 'line',
       areaStyle: {},
@@ -143,7 +144,8 @@ function initTimeChart(canvas, width, height, dpr) {
 export default class Index extends Component {
 
   componentWillMount() {
-    alertdata =[30, 92, 81, 74, 90, 30, 60, 80, 10]
+    alertdata = [30, 92, 81, 74, 90, 30, 60, 80, 10]
+
   }
 
   componentDidMount() {
@@ -184,14 +186,13 @@ export default class Index extends Component {
     ec: {
       onInit: initChart
     }
-    ,trend:{
-      onInit:initTrendChart
+    , trend: {
+      onInit: initTrendChart
     },
-    time:{
-      onInit:initTimeChart
+    time: {
+      onInit: initTimeChart
     }
   }
-
 
   handleClick(value) {
     this.setState({
@@ -208,7 +209,6 @@ export default class Index extends Component {
           <Text className='header'>2020-01-01~2020-05-15</Text>
           <Text className='header'>5个门店</Text>
         </View>
-
 
         <Text className="time_title">较上期环比：前90天（2019-08-30-2019-11-27）</Text>
 
@@ -237,7 +237,6 @@ export default class Index extends Component {
             <Text className='content_style'>123个</Text>
             <Text className='content_style_data4'>-50%⬇</Text>
           </View>
-
         </View>
 
         <Text className='express_title'>处置率</Text>
@@ -280,8 +279,6 @@ export default class Index extends Component {
 
         <View>
           <Text className="express_title">门店报警排行榜</Text>
-          {/*<AtDivider lineColor="#fafafa" height={1}/>*/}
-
         </View>
 
         <AtGrid data={this.state.tempData} columnNum={3} mode="rect"/>
@@ -289,6 +286,7 @@ export default class Index extends Component {
         <View>
           <Text className="express_title">趋势分析</Text>
         </View>
+
         <View className='disposal_rate'>
           <ec-canvas id='mychart-dom' canvas-id='mychart-area' ec={this.state.trend}/>
         </View>
@@ -296,6 +294,7 @@ export default class Index extends Component {
         <View>
           <Text className="express_title">报警时段分析</Text>
         </View>
+
         <View className='disposal_rate'>
           <ec-canvas id='mychart-dom' canvas-id='mychart-area' ec={this.state.time}/>
         </View>

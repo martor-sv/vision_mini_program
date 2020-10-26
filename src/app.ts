@@ -1,11 +1,14 @@
+import Taro from '@tarojs/taro'
 import { Component } from 'react'
-import  Taro from  "@tarojs/taro"
-
 import './app.scss'
+import {Constant} from "./common/Constant";
+
 
 class App extends Component {
 
-  componentDidMount () {}
+  componentDidMount () {
+    Taro.setStorageSync(Constant.token,"eyJhbGciOiJIUzI1NiIsInR5cCI6IlRWIn0.eyJ1aWQiOiJmNzAwZWM4NS0wZTZkLTQzMmYtOGZlNi1mMDhhYWE0OGVmNDciLCJuYW1lIjoi546L6Zu3IiwibmJmIjoiMjAyMC0xMC0yMyAxNTo0OToxMy4xODgiLCJpYXQiOiIyMDIwLTEwLTIzIDE1OjQ5OjEzLjE4OCJ9.ZTLN7qdEEqVdxgIKI22RyGwUUSyQw_DwPAEGunJEERA")
+  }
 
   componentDidShow () {
     Taro.login(

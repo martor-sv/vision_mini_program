@@ -1,7 +1,8 @@
 import * as Taro from "@tarojs/taro";
 import BaseServiceImpl from "./BaseServiceImpl";
 import {Service} from "./Service";
-import UrlConfig from "../config/UrlConfig";
+import UrlConfig from "../common/UrlConfig";
+
 
 
 export default class ServiceImpl extends BaseServiceImpl implements Service {
@@ -148,14 +149,15 @@ export default class ServiceImpl extends BaseServiceImpl implements Service {
     })
   }
 
-  login(account: string, pwd: string) {
+  //{user: gwl, pass: h0DWADb7uqNnN-UbdG7BzA==, grantType: password}
+  login() {
     return new Promise((resolve) => {
       const option: any = this.getOption();
       option.url = UrlConfig.login
       option.method = 'POST'
       option.data = {
-        account: account,
-        password: pwd,
+        account: "gwl",
+        password: "h0DWADb7uqNnN-UbdG7BzA==",
       }
       Taro.request(option).then((res) => {
         if (res.statusCode < 300) {
