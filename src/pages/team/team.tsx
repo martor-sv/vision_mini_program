@@ -1,5 +1,6 @@
-import Taro from '@tarojs/taro'
-import React, {Component} from 'react'
+import * as Taro from '@tarojs/taro'
+import {Component} from 'react'
+import * as React from 'react'
 import {Text, View} from '@tarojs/components'
 
 import './team.scss'

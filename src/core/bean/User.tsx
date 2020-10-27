@@ -1,7 +1,5 @@
-import Calendar from "taro-ui/types/calendar";
 import ResourceInGroup from "./ResourceInGroup";
 import Company from "./Company";
-import List = Calendar.List;
 
 export default class User {
   uid: String
@@ -16,6 +14,5 @@ export default class User {
   memo: String
   createTime: String
   lastUpdate: String
-  roleInGroupPojoList: List<ResourceInGroup>
-
+  roleInGroupPojoList: Array<ResourceInGroup>
 }

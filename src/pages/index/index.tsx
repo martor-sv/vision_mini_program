@@ -1,6 +1,7 @@
-// @ts-ignore
+
 import {AtDivider, AtGrid} from "taro-ui";
-import React, {Component} from 'react'
+import * as React from "react"
+import {Component} from 'react'
 
 import {Icon, Text, View} from '@tarojs/components'
 // import "taro-ui/dist/style/components/button.scss" // 按需引入
