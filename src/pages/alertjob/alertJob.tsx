@@ -1,19 +1,40 @@
-import React, {Component} from 'react'
+import  {Component} from 'react'
+import * as React from 'react'
 import {View} from '@tarojs/components'
 
 import "taro-ui/dist/style/components/button.scss" // 按需引入
 import "taro-ui/dist/style/components/tab-bar.scss";
 import "taro-ui/dist/style/components/badge.scss";
 import AlertJobItem from "./item/alertJobItem";
+import AlertHandlerJob from "../../core/bean/AlertHandlerJob";
+import Shop from "../../core/bean/Shop";
 
-let alertData = [];
+
+let alertData= []
 
 export default class AlertJob extends Component {
 
   // 监听程序初始化，初始化完成时触发（全局只触发一次）
   componentWillMount() {
 
+    let a = new AlertHandlerJob()
+    a.id = '11'
+    a.maxGuard = 123
+    let sp = new Shop()
+    sp.name='123'
+    sp.landmarkList=[]
+    a.shop = sp
 
+    let b = new AlertHandlerJob()
+    b.id = '1122'
+    b.maxGuard = 123321
+    let sp1 = new Shop()
+    sp1.name='12223'
+    sp1.landmarkList=[]
+    b.shop = sp1
+
+    alertData.push(a)
+    alertData.push(b)
 
   }
 
@@ -29,6 +50,7 @@ export default class AlertJob extends Component {
 
   //程序从前台进入后台时触发
   componentDidHide() {
+
   }
 
   //页面卸载时触发，如 redirectTo 或 navigateBack 到其他页面时
@@ -50,7 +72,7 @@ export default class AlertJob extends Component {
     return (
       <View className='index'>
         {alertData.map((value, index,) => {
-          return <AlertJobItem id={122}/>
+          return <AlertJobItem alertHandlerJob={value}/>
         })}
       </View>
     )

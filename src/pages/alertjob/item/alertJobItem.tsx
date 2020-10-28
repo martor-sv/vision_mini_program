@@ -1,15 +1,17 @@
-// @ts-ignore
-import React, {Component} from "react";
+import * as React from "react";
+import {Component} from "react";
 
-// @ts-ignore
-import Taro from "@tarojs/taro"
-import {Image, Text, View} from "@tarojs/components";
+import * as Taro from "@tarojs/taro"
+import {Text, View} from "@tarojs/components";
 import './alertJobItem.css'
+import AlertHandlerJob from "../../../core/bean/AlertHandlerJob";
 
 
 export default class AlertJobItem extends Component {
+  address = ""
 
   componentWillMount() {
+    this.address = this.props.alertHandlerJob.bind(this).shop.landmarkList.length > 0 ? this.props.alertHandlerJob.bind(this).shop.landmarkList[0].addr : ""
   }
 
   componentDidMount() {
@@ -25,11 +27,12 @@ export default class AlertJobItem extends Component {
   }
 
   state = {
-    current: 0
+    current: 0,
+
   }
 
   props = {
-    id: -1
+    alertHandlerJob: AlertHandlerJob
   }
 
   handleClick() {
@@ -39,10 +42,9 @@ export default class AlertJobItem extends Component {
     // })
 
     Taro.navigateTo({
-      url:"/pages/alertjob/detail/alertJobDetail",
-      events:{
-      },
-      success:function (res) {
+      url: "/pages/alertjob/detail/alertJobDetail",
+      events: {},
+      success: function (res) {
 
       }
     })
@@ -51,17 +53,16 @@ export default class AlertJobItem extends Component {
   render() {
     return (
       <View className="box" onClick={this.handleClick.bind(this)}>
-
         <Text className="txt">出警通知</Text>
         <Text className="txtTitle">报警门店</Text>
-        <Text className="shopTitle">紫叶广场店</Text>
+        <Text className="shopTitle">{this.props.alertHandlerJob.bind(this).shop.name}</Text>
         <View className="bd">
-          <Text className="shopTitle_1">门店地址&nbsp;&nbsp;&nbsp;紫星路588号1号楼</Text>
-          <Text className="title">报警时间&nbsp;&nbsp;&nbsp;2020/02/1023：15：15</Text>
+          <Text className="shopTitle_1">门店地址&nbsp;&nbsp;&nbsp;{this.address}</Text>
+          <Text className="title">报警时间&nbsp;&nbsp;&nbsp;{this.props.alertHandlerJob.bind(this).createTime}</Text>
         </View>
         <View className="main">
           <Text className="text">当前状态</Text>
-          <Text className="txt_1">已完成</Text>
+          <Text className="txt_1">已完成{this.props.alertHandlerJob.bind(this).maxGuard}</Text>
         </View>
         <View className="line"/>
 

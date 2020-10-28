@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import * as React from "react";
+import {Component} from "react";
 import {Image, Text, View} from "@tarojs/components";
 import './alertJobDetail.scss';
 import {AtTimeline} from 'taro-ui'
@@ -53,7 +54,7 @@ export default class AlertJobDetail extends Component {
           className='at_time_line'
           items={[
             {title: "智能报警", content: ['王蒙、秦邵华'], icon: 'check-circle', color: 'blue'},
-            {title: '通知出警', content: ['秦邵华'],icon: 'check-circle', color: 'blue'},
+            {title: '通知出警', content: ['秦邵华'], icon: 'check-circle', color: 'blue'},
             {title: '已接警', color: 'red'},
             {title: '到达现场', color: 'red'},
             {title: '出警结束', color: 'red'},

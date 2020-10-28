@@ -1,11 +1,10 @@
-import Calendar from "taro-ui/types/calendar";
 import User from "./User";
 import Alerter from "./Alerter";
 import Shop from "./Shop";
 import AlertHandlerJobStatus from "./AlertHandlerJobStatus";
 import AlertHandleJobEvent from "./AlertHandleJobEvent";
 
-class AlertHandlerJob {
+export default class alertHandlerJob {
 
   id: String
   creater: User
@@ -13,9 +12,8 @@ class AlertHandlerJob {
   createTime: String
   shop: Shop
   status: AlertHandlerJobStatus
-  maxGuard:number
+  maxGuard: number
   guardList: Array<User>
   handleLine: Array<AlertHandleJobEvent>
   lastUpdate: String
-
 }
