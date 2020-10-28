@@ -26,6 +26,5 @@
     "jsx": true
   },
   "useJSXTextNode": true
-//    "project": "./tsconfig.json"
 }
 }
