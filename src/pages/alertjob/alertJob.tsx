@@ -1,5 +1,5 @@
-import  {Component} from 'react'
 import * as React from 'react'
+import {Component} from 'react'
 import {View} from '@tarojs/components'
 
 import "taro-ui/dist/style/components/button.scss" // 按需引入
@@ -7,34 +7,22 @@ import "taro-ui/dist/style/components/tab-bar.scss";
 import "taro-ui/dist/style/components/badge.scss";
 import AlertJobItem from "./item/alertJobItem";
 import AlertHandlerJob from "../../core/bean/AlertHandlerJob";
-import Shop from "../../core/bean/Shop";
+import ServiceImpl from "../../service/ServiceImpl";
 
-
-let alertData= []
 
 export default class AlertJob extends Component {
 
+  async getAlertJobList() {
+    let alertJob: any = await ServiceImpl.getInstance().getAlertJobList()
+    console.log(alertJob)
+    this.setState({
+      alertData:alertJob['jobList'] as Array<AlertHandlerJob>
+    })
+  }
+
   // 监听程序初始化，初始化完成时触发（全局只触发一次）
   componentWillMount() {
-
-    let a = new AlertHandlerJob()
-    a.id = '11'
-    a.maxGuard = 123
-    let sp = new Shop()
-    sp.name='123'
-    sp.landmarkList=[]
-    a.shop = sp
-
-    let b = new AlertHandlerJob()
-    b.id = '1122'
-    b.maxGuard = 123321
-    let sp1 = new Shop()
-    sp1.name='12223'
-    sp1.landmarkList=[]
-    b.shop = sp1
-
-    alertData.push(a)
-    alertData.push(b)
+    this.getAlertJobList()
 
   }
 
@@ -59,7 +47,8 @@ export default class AlertJob extends Component {
 
 
   state = {
-    current: 0
+    current: 0,
+    alertData: []
   }
 
   handleClick(value) {
@@ -71,7 +60,7 @@ export default class AlertJob extends Component {
   render() {
     return (
       <View className='index'>
-        {alertData.map((value, index,) => {
+        {this.state.alertData.map((value, index,) => {
           return <AlertJobItem alertHandlerJob={value}/>
         })}
       </View>

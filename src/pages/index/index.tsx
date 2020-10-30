@@ -1,17 +1,16 @@
-
 import {AtDivider, AtGrid} from "taro-ui";
 import * as React from "react"
-import {Component} from 'react'
+import {Component} from "react"
 
 import {Icon, Text, View} from '@tarojs/components'
 // import "taro-ui/dist/style/components/button.scss" // 按需引入
 // import "taro-ui/dist/style/components/tab-bar.scss";
 // import "taro-ui/dist/style/components/badge.scss";
-
 import "taro-ui/dist/style/components/card.scss";
 
 import './index.scss'
 import * as echarts from '../../components/ec-canvas/echarts'
+import ServiceImpl from "../../service/ServiceImpl";
 
 
 var alertdata = [];
@@ -144,7 +143,14 @@ function initTimeChart(canvas, width, height, dpr) {
 
 export default class Index extends Component {
 
+  async getCostData() {
+    let data = await ServiceImpl.getInstance().getCostData()
+    console.log(data)
+
+  }
+
   componentWillMount() {
+    this.getCostData()
     alertdata = [30, 92, 81, 74, 90, 30, 60, 80, 10]
 
   }

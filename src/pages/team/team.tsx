@@ -1,23 +1,15 @@
-import * as Taro from '@tarojs/taro'
-import * as React from 'react'
+import Taro from '@tarojs/taro'
+import React from 'react'
 import {Component} from 'react'
 import {Text, View} from '@tarojs/components'
 
 import './team.scss'
 import {Constant} from "../../common/Constant";
-import ServiceImpl from "../../service/ServiceImpl";
 
 export default class Team extends Component {
 
 
-  async login() {
-    let result: any = await ServiceImpl.getInstance().login()
-    console.log('登陆返回数据：', result)
-  }
-
-
   componentWillMount() {
-    this.login()
   }
 
   componentDidMount() {
@@ -67,6 +59,7 @@ export default class Team extends Component {
         <Text>{
           Taro.getStorageSync(Constant.token)
         }</Text>
+
 
       </View>
     )

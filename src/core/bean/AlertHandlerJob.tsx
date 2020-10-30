@@ -12,7 +12,7 @@ export default class alertHandlerJob {
   createTime: String
   shop: Shop
   status: AlertHandlerJobStatus
-  maxGuard: number
+  maxGuards: number
   guardList: Array<User>
   handleLine: Array<AlertHandleJobEvent>
   lastUpdate: String
