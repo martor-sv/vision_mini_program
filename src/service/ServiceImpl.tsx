@@ -107,9 +107,18 @@ export default class ServiceImpl extends BaseServiceImpl implements Service {
     return new Promise((resolve,reject) => {
       const option: any = this.getOption();
       option.url = UrlConfig.GET_IMAGE_DATA+id
+      option.responseType='arraybuffer'
+      // option.success((res)=>{
+      //   const arraybuffer= new Uint8Array(res)
+      //   let base64=
+      //   resolve(base64)
+      // })
       Taro.request(option).then((res) => {
+
         if (res.statusCode < 300) {
-          resolve(res.data);
+          console.log(res.data)
+          let base64="data:image/jpeg;base64,"+Taro.arrayBufferToBase64(res.data)
+          resolve(base64);
         } else {
           reject(res);
         }
