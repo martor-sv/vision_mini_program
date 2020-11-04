@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {Component} from "react";
 
 import Taro from "@tarojs/taro"
@@ -9,37 +9,32 @@ import {Constant} from "../../../common/Constant";
 
 
 export default class AlertJobItem extends Component {
-  address = ""
+
 
   componentWillMount() {
 
     // this.address = this.props.alertHandlerJob.shop.landmarkList.length > 0 ? this.props.alertHandlerJob.shop.landmarkList[0].addr : ""
   }
 
-  getCurrentStatusName(status: String): String {
-    switch (status) {
-      case Constant.STATUS_CLOSED : {
-        return "已关闭"
-      }
-      case Constant.STATUS_COMPLETED : {
-        return "已完成"
-      }
-      case  Constant.STATUS_CONFIRMED: {
-        return "已接警"
-      }
-      case  Constant.STATUS_UNHANDLED, Constant.STATUS_ASSIGNED: {
-        return "待处理"
-      }
-      default: {
-        return ""
-      }
-
-    }
-    // (status) {
-    //
-    // }
-
-  }
+  // getCurrentStatusName(status: String): String {
+  //   switch (status) {
+  //     case Constant.STATUS_CLOSED : {
+  //       return "已关闭"
+  //     }
+  //     case Constant.STATUS_COMPLETED : {
+  //       return "已完成"
+  //     }
+  //     case  Constant.STATUS_CONFIRMED: {
+  //       return "已接警"
+  //     }
+  //     case  Constant.STATUS_UNHANDLED, Constant.STATUS_ASSIGNED: {
+  //       return "待处理"
+  //     }
+  //     default: {
+  //       return ""
+  //     }
+  //   }
+  // }
 
   componentDidMount() {
   }
@@ -54,8 +49,7 @@ export default class AlertJobItem extends Component {
   }
 
   state = {
-    current: 0,
-
+    address : ""
   }
 
   props = {
@@ -69,7 +63,8 @@ export default class AlertJobItem extends Component {
     // })
 
     Taro.navigateTo({
-      url: "/pages/alertjob/detail/alertJobDetail",
+      url: "/pages/alertjob/detail/alertJobDetail?jobId="+this.props.alertHandlerJob.id,
+
       events: {},
       success: function (res) {
 
@@ -89,7 +84,7 @@ export default class AlertJobItem extends Component {
         </View>
         <View className="main">
           <Text className="text">当前状态</Text>
-          <Text className="txt_1">{this.getCurrentStatusName(this.props.alertHandlerJob.status.name)}</Text>
+          <Text className="txt_1">{Constant.getCurrentStatusName(this.props.alertHandlerJob.status.name)}</Text>
         </View>
         <View className="line"/>
 

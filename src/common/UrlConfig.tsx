@@ -17,4 +17,7 @@ export default class UrlConfig {
   //获取报个人数据面板
   public static   GET_COST_DATA        = `${UrlConfig.baseUrl}/api1/alert-business/statistics/alert-handler-job/costData`;
 
+
+  public static   GET_IMAGE_DATA        = `${UrlConfig.baseUrl}/api1/file/image?url=`;
+
 }

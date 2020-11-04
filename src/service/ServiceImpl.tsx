@@ -21,7 +21,7 @@ export default class ServiceImpl extends BaseServiceImpl implements Service {
   }
 
   login() {
-    return new Promise((resolve) => {
+    return new Promise((resolve,reject) => {
       const option: any = this.getOption();
       option.url = UrlConfig.login
       option.method = 'POST'
@@ -34,14 +34,14 @@ export default class ServiceImpl extends BaseServiceImpl implements Service {
         if (res.statusCode < 300) {
           resolve(res.data);
         } else {
-          resolve(res);
+          reject(res);
         }
       });
     })
   }
 
   getAlertJobList(){
-    return new Promise((resolve) => {
+    return new Promise((resolve,reject) => {
       const option: any = this.getOption();
       option.url = UrlConfig.GET_WORKORDER_URL
       option.data = {
@@ -59,7 +59,30 @@ export default class ServiceImpl extends BaseServiceImpl implements Service {
         if (res.statusCode < 300) {
           resolve(res.data);
         } else {
-          resolve(res);
+          reject(res);
+        }
+      });
+    })
+
+  }
+
+  getStoreDetail(jobId){
+    return new Promise((resolve,reject) => {
+      const option: any = this.getOption();
+      option.url = UrlConfig.GET_WORKORDER_URL
+      option.data = {
+        jobId:jobId,
+        beginTime: "1970-01-01 00:00:00.000",
+        endTime: "2500-01-01 00:00:00",
+        page: 0,
+        pageSize: 20,
+        contains:"alert,event",
+      }
+      Taro.request(option).then((res) => {
+        if (res.statusCode < 300) {
+          resolve(res.data);
+        } else {
+          reject(res);
         }
       });
     })
@@ -67,18 +90,31 @@ export default class ServiceImpl extends BaseServiceImpl implements Service {
   }
 
   getCostData(){
-    return new Promise((resolve) => {
+    return new Promise((resolve,reject) => {
       const option: any = this.getOption();
       option.url = UrlConfig.GET_COST_DATA
       Taro.request(option).then((res) => {
         if (res.statusCode < 300) {
           resolve(res.data);
         } else {
-          resolve(res);
+          reject(res);
         }
       });
     })
+  }
 
+  getImageData(id){
+    return new Promise((resolve,reject) => {
+      const option: any = this.getOption();
+      option.url = UrlConfig.GET_IMAGE_DATA+id
+      Taro.request(option).then((res) => {
+        if (res.statusCode < 300) {
+          resolve(res.data);
+        } else {
+          reject(res);
+        }
+      });
+    })
   }
 
 };

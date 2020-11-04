@@ -1,5 +1,5 @@
 import {AtDivider, AtGrid} from "taro-ui";
-import * as React from "react"
+import React from "react"
 import {Component} from "react"
 
 import {Icon, Text, View} from '@tarojs/components'
