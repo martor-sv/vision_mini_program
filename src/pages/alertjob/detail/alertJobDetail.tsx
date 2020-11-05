@@ -81,13 +81,13 @@ export default class AlertJobDetail extends Component {
         switch (value.action) {
           case Constant.EVENT_ACTION_ASSIGNED: {
             this.state.handleLine.push({
-              title: "智能报警",
+              title: "智能报警  "+value.reportTime.substring(0,19),
               content: [this._getObjectName(value.objectList)],
               icon: 'check-circle',
               color: 'blue'
             },)
             this.state.handleLine.push({
-              title: "通知出警",
+              title: "通知出警  "+value.reportTime.substring(0,19),
               content: [this._getObjectName(value.objectList)],
               icon: 'check-circle',
               color: 'blue'
@@ -96,7 +96,7 @@ export default class AlertJobDetail extends Component {
           }
           case Constant.EVENT_ACTION_CONFIRM: {
             this.state.handleLine.push({
-              title: "已接警",
+              title: "已接警 "+value.reportTime.substring(0,19),
               content: [assignJobNames],
               icon: 'check-circle',
               color: 'blue'
@@ -105,7 +105,7 @@ export default class AlertJobDetail extends Component {
           }
           case Constant.EVENT_ACTION_CONFIRMARRIVED: {
             this.state.handleLine.push({
-              title: "到达现场",
+              title: "到达现场  "+value.reportTime.substring(0,19),
               content: [arriveJobNames],
               icon: 'check-circle',
               color: 'blue'
@@ -114,7 +114,7 @@ export default class AlertJobDetail extends Component {
           }
           case Constant.EVENT_ACTION_COMPLETEJOB: {
             this.state.handleLine.push({
-              title: "出警结束",
+              title: "出警结束  "+value.reportTime.substring(0,19),
               content: [completeJobNames],
               icon: 'check-circle',
               color: 'blue'
@@ -123,7 +123,7 @@ export default class AlertJobDetail extends Component {
           }
           case Constant.EVENT_ACTION_CLOSEJOB: {
             this.state.handleLine.push({
-              title: "结案确认",
+              title: "结案确认  "+value.reportTime.substring(0,19),
               content: [closeJobNames],
               icon: 'check-circle',
               color: 'blue'
