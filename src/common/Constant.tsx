@@ -15,6 +15,26 @@ export class Constant {
   public static STATUS_COMPLETED = 'completed';
   public static STATUS_CLOSED = 'closed';
 
+  /// action 执行的工单操作。assign指派，removeAssignent移除指派，confirmJob接警，
+///                       arrived到店（APP根据位置自动判断），confirmArrived确认到店（人员通过APP确认），leaved离店（APP自动判断）
+///                       confirmLeaved确认离店（人员通过APP确认）submit提交处理资料，accept接受处理结果，
+///                       close关闭工单（超期自动关闭，或操作员强制关闭）
+
+  static  EVENT_ACTION_ASSIGNED = "assignJob";
+  static  EVENT_ACTION_REMOVEASSIGN = "removeAssignent";
+  static  EVENT_ACTION_APPRECEIVEJOB = "appReceiveJob";
+  static  EVENT_ACTION_CONFIRM = "confirmJob";
+  static  EVENT_ACTION_APPARRIVED = "appArriveShop";
+  static  EVENT_ACTION_CONFIRMARRIVED = "confirmArriveShop";
+  static  EVENT_ACTION_APPLEAVESHOP = "appLeaveShop";
+  static  EVENT_ACTION_CONFIRMLEAVED = "confirmLeaveShop";
+  static  EVENT_ACTION_SUBMITDATA = "submitData";
+  static  EVENT_ACTION_ACCEPTDATA = "acceptData";
+  static  EVENT_ACTION_REJECTDATA = "rejectData";
+  static  EVENT_ACTION_COMPLETEJOB = "completeJob";
+  static  EVENT_ACTION_CLOSEJOB = "closeJob";
+
+
 
   public static token = 'token'
   public static userInfo = 'userInfo'

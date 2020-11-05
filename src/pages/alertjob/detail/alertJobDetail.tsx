@@ -9,6 +9,9 @@ import ServiceImpl from "../../../service/ServiceImpl";
 import AlertHandlerJob from "../../../core/bean/AlertHandlerJob";
 import {Constant} from "../../../common/Constant";
 import ImageUtil from "../../../utils/ImageUtil";
+import IdName from "../../../core/bean/IdName";
+import User from "../../../core/bean/User";
+import AlertHandleJobEvent from "../../../core/bean/AlertHandleJobEvent";
 
 export default class AlertJobDetail extends Component {
 
@@ -18,37 +21,147 @@ export default class AlertJobDetail extends Component {
 
     this.setState({
       alertHandlerJob: result['jobList'][0] as AlertHandlerJob,
-      handleLine: this.state.alertHandlerJob.handleLine
+      // handleLine: this.state.alertHandlerJob.handleLine
     })
 
     let data = ImageUtil.getImageUrl(this.state.alertHandlerJob.alerterList && this.state.alertHandlerJob.alerterList[0].imageList[0])
 
-    console.log(data.then((value => {
-      console.log(value)
-    })))
+    // console.log(data.then((value => {
+    //   console.log(value)
+    // })))
 
     data.then((value => {
       this.setState({
         image: value
       })
     }))
-
-
     console.log(this.state.alertHandlerJob)
+    this.showHandleLine()
   }
 
   showHandleLine() {
 
-    // this.state.handleLine.addAll()
+    // Array<AlertHandleJobEvent>
 
+    //已接警的名单
+    let assignJobNames=''
+    //已到达的名单
+    let arriveJobNames=''
+    //出警结束的名单
+    let completeJobNames=''
+    //工单结束的名单
+    let closeJobNames=''
+
+
+    this.state.alertHandlerJob.handleLine.map((value, index) => {
+      switch (value.action) {
+        case Constant.EVENT_ACTION_CONFIRM: {
+          assignJobNames+=""+value.handler.name
+          break
+        }
+        case Constant.EVENT_ACTION_CONFIRMARRIVED: {
+          arriveJobNames+=""+value.handler.name
+          break
+        }
+        case Constant.EVENT_ACTION_COMPLETEJOB: {
+          completeJobNames+=""+value.handler.name
+          break
+        }
+        case Constant.EVENT_ACTION_CLOSEJOB: {
+          closeJobNames+=""+value.handler.name
+          break
+        }
+      }
+    })
+
+
+    if (this.state.alertHandlerJob && this.state.alertHandlerJob.handleLine) {
+      console.log(this.state.alertHandlerJob.handleLine)
+      this.state.alertHandlerJob.handleLine.map((value, index) => {
+        switch (value.action) {
+          case Constant.EVENT_ACTION_ASSIGNED: {
+            this.state.handleLine.push({
+              title: "智能报警",
+              content: [this._getObjectName(value.objectList)],
+              icon: 'check-circle',
+              color: 'blue'
+            },)
+            this.state.handleLine.push({
+              title: "通知出警",
+              content: [this._getObjectName(value.objectList)],
+              icon: 'check-circle',
+              color: 'blue'
+            },)
+            break
+          }
+          case Constant.EVENT_ACTION_CONFIRM: {
+            this.state.handleLine.push({
+              title: "已接警",
+              content: [assignJobNames],
+              icon: 'check-circle',
+              color: 'blue'
+            },)
+            break
+          }
+          case Constant.EVENT_ACTION_CONFIRMARRIVED: {
+            this.state.handleLine.push({
+              title: "到达现场",
+              content: [arriveJobNames],
+              icon: 'check-circle',
+              color: 'blue'
+            },)
+            break
+          }
+          case Constant.EVENT_ACTION_COMPLETEJOB: {
+            this.state.handleLine.push({
+              title: "出警结束",
+              content: [completeJobNames],
+              icon: 'check-circle',
+              color: 'blue'
+            },)
+            break
+          }
+          case Constant.EVENT_ACTION_CLOSEJOB: {
+            this.state.handleLine.push({
+              title: "结案确认",
+              content: [closeJobNames],
+              icon: 'check-circle',
+              color: 'blue'
+            },)
+            break
+          }
+
+        }
+
+        console.log(value.reportTime)
+      })
+    }
+
+    // for (let lineStatus in this.state.alertHandlerJob.handleLine){
+    //   console.log(lineStatus.reportTime)
+    // }
   }
 
+
+  _getObjectName(objectList:Array<IdName>):String{
+    let names=""
+    objectList.map((value, index) => {
+      names+=" "+value.name
+    })
+    return names
+  }
+
+  _getAcceptJobNames(guardList: Array<User>):String{
+    let names=""
+    guardList.map((value, index) =>{
+      names+=" "+value.name
+    })
+    return names
+  }
 
   componentWillMount() {
     console.log(Taro.getCurrentInstance().router.params['jobId'])
     this.getStoreDetail(Taro.getCurrentInstance().router.params['jobId'])
-
-    this.showHandleLine()
   }
 
   componentDidMount() {
@@ -96,14 +209,15 @@ export default class AlertJobDetail extends Component {
 
         <AtTimeline
           className='at_time_line'
-          items={[
-            {title: "智能报警", content: ['王蒙、秦邵华'], icon: 'check-circle', color: 'blue'},
-            {title: '通知出警', content: ['秦邵华'], icon: 'check-circle', color: 'blue'},
-            {title: '已接警', color: 'red'},
-            {title: '到达现场', color: 'red'},
-            {title: '出警结束', color: 'red'},
-            {title: '结案确认', color: 'red'},
-          ]}
+          items={
+            this.state.handleLine
+            // {title: "智能报警", content: ['王蒙、秦邵华'], icon: 'check-circle', color: 'blue'},
+            // {title: '通知出警', content: ['秦邵华'], icon: 'check-circle', color: 'blue'},
+            // {title: '已接警', color: 'red'},
+            // {title: '到达现场', color: 'red'},
+            // {title: '出警结束', color: 'red'},
+            // {title: '结案确认', color: 'red'},
+          }
           pending={true}
         >
         </AtTimeline>

@@ -1,4 +1,5 @@
 import React from 'react'
+import Taro from "@tarojs/taro"
 import {Component} from 'react'
 import {View} from '@tarojs/components'
 
@@ -23,7 +24,7 @@ export default class AlertJob extends Component {
   // 监听程序初始化，初始化完成时触发（全局只触发一次）
   componentWillMount() {
     this.getAlertJobList()
-
+    // Taro.startPullDownRefresh()
   }
 
   //页面初次渲染完成时触发，一个页面只会调用一次，代表页面已经准备妥当，可以和视图层进行交互
@@ -44,7 +45,6 @@ export default class AlertJob extends Component {
   //页面卸载时触发，如 redirectTo 或 navigateBack 到其他页面时
   componentWillUnmount() {
   }
-
 
   state = {
     current: 0,
