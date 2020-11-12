@@ -20,14 +20,14 @@ export default class ServiceImpl extends BaseServiceImpl implements Service {
     return ServiceImpl.serviceImpl;
   }
 
-  login() {
+  login(user:String,pass:String) {
     return new Promise((resolve,reject) => {
       const option: any = this.getOption();
       option.url = UrlConfig.login
       option.method = 'POST'
       option.data = {
-        user: "gwl",
-        pass: "h0DWADb7uqNnN-UbdG7BzA==",
+        user: user,
+        pass: pass,
         grantType: "password",
       }
       Taro.request(option).then((res) => {

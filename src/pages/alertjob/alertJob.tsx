@@ -1,6 +1,4 @@
-import React from 'react'
-import Taro from "@tarojs/taro"
-import {Component} from 'react'
+import React, {Component} from 'react'
 import {View} from '@tarojs/components'
 
 import "taro-ui/dist/style/components/button.scss" // 按需引入
@@ -9,6 +7,8 @@ import "taro-ui/dist/style/components/badge.scss";
 import AlertJobItem from "./item/alertJobItem";
 import AlertHandlerJob from "../../core/bean/AlertHandlerJob";
 import ServiceImpl from "../../service/ServiceImpl";
+import Taro from "@tarojs/taro";
+import {Constant} from "../../common/Constant";
 
 
 export default class AlertJob extends Component {
@@ -17,12 +17,19 @@ export default class AlertJob extends Component {
     let alertJob: any = await ServiceImpl.getInstance().getAlertJobList()
     console.log(alertJob)
     this.setState({
-      alertData:alertJob['jobList'] as Array<AlertHandlerJob>
+      alertData: alertJob['jobList'] as Array<AlertHandlerJob>
     })
   }
 
   // 监听程序初始化，初始化完成时触发（全局只触发一次）
   componentWillMount() {
+    if (Taro.getStorageSync(Constant.token) == null || Taro.getStorageSync(Constant.token) == "") {
+      Taro.redirectTo({
+        url:'../login/login'
+      })
+      return
+    }
+
     this.getAlertJobList()
     // Taro.startPullDownRefresh()
   }

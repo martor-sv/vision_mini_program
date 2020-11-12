@@ -1,6 +1,7 @@
 export default {
   pages: [
     'pages/alertjob/alertJob',
+    'pages/login/login',
     'pages/index/index',
     'pages/team/team',
     'pages/alertjob/detail/alertJobDetail',

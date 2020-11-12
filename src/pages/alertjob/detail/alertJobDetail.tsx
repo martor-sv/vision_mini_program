@@ -211,12 +211,6 @@ export default class AlertJobDetail extends Component {
           className='at_time_line'
           items={
             this.state.handleLine
-            // {title: "智能报警", content: ['王蒙、秦邵华'], icon: 'check-circle', color: 'blue'},
-            // {title: '通知出警', content: ['秦邵华'], icon: 'check-circle', color: 'blue'},
-            // {title: '已接警', color: 'red'},
-            // {title: '到达现场', color: 'red'},
-            // {title: '出警结束', color: 'red'},
-            // {title: '结案确认', color: 'red'},
           }
           pending={true}
         >

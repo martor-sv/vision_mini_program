@@ -1,6 +1,5 @@
 import {AtDivider, AtGrid} from "taro-ui";
-import React from "react"
-import {Component} from "react"
+import React, {Component} from "react"
 
 import {Icon, Text, View} from '@tarojs/components'
 // import "taro-ui/dist/style/components/button.scss" // 按需引入
@@ -11,6 +10,7 @@ import "taro-ui/dist/style/components/card.scss";
 import './index.scss'
 import * as echarts from '../../components/ec-canvas/echarts'
 import ServiceImpl from "../../service/ServiceImpl";
+import UserData from "../../core/bean/UserData";
 
 
 var alertdata = [];
@@ -144,7 +144,42 @@ function initTimeChart(canvas, width, height, dpr) {
 export default class Index extends Component {
 
   async getCostData() {
-    let data = await ServiceImpl.getInstance().getCostData()
+    let data: UserData = (await ServiceImpl.getInstance().getCostData()) as UserData
+
+    if (data.avgCostMs > 1000 * 60 * 60) {
+      this.setState({
+        avgCostMs: (data.avgCostMs / (1000 * 60 * 60)).toFixed(2) + "h"
+      })
+    } else if (data.avgCostMs > 1000 * 60) {
+      this.setState({
+        avgCostMs: (data.avgCostMs / (1000 * 60)) + "min"
+      })
+    } else {
+      this.setState({
+        avgCostMs: (data.avgCostMs / (1000)) + "s"
+      })
+    }
+
+    if (data.avgConfirmJobMs > 1000 * 60 * 60) {
+      this.setState({
+        avgConfirmJobMs: (data.avgConfirmJobMs / (1000 * 60 * 60)).toFixed(2) + "h"
+      })
+    } else if (data.avgCostMs > 1000 * 60) {
+      this.setState({
+        avgConfirmJobMs: (data.avgConfirmJobMs / (1000 * 60)) + "min"
+      })
+    } else {
+      this.setState({
+        avgConfirmJobMs: (data.avgConfirmJobMs / (1000)) + "s"
+      })
+    }
+
+    this.setState({
+      recordCount:data.recordCount
+    })
+    // this.setState({
+    //   avgCostMs:data.
+    // })
     console.log(data)
 
   }
@@ -168,28 +203,12 @@ export default class Index extends Component {
   }
 
   state = {
+    avgCostMs: '',
+    avgConfirmJobMs: '',
+    recordCount: '',
     current: 0,
     listdata: [1, 2, 15, 12, 45, 44],
-    tempData: [{
-      value: '排名'
-    }, {
-      value: '门店'
-    }, {
-      value: '报警量'
-    }, {
-      value: '1'
-    }, {
-      value: 'xxxdain'
-    }, {
-      value: '12'
-    }, {
-      value: '2'
-    }, {
-      value: 'xxxdain'
-    }, {
-      value: '123'
-    },
-    ],
+
     ec: {
       onInit: initChart
     }
@@ -267,19 +286,19 @@ export default class Index extends Component {
 
           <View className='box_2'>
             <Icon className="content_style" type="download"/>
-            <Text className="content_style">5.52h</Text>
+            <Text className="content_style">{this.state.avgCostMs}</Text>
             <Text className="content_style">出警均用时</Text>
           </View>
 
           <View className='box_2'>
             <Icon className="content_style" type="success"/>
-            <Text className="content_style">3.2min</Text>
+            <Text className="content_style">{this.state.avgConfirmJobMs}</Text>
             <Text className="content_style">响应均用时</Text>
           </View>
 
           <View className='box_2'>
             <Icon className="content_style" type="info"/>
-            <Text className="content_style">85个</Text>
+            <Text className="content_style">{this.state.recordCount}个</Text>
             <Text className="content_style">均出警量</Text>
           </View>
         </View>
@@ -287,8 +306,17 @@ export default class Index extends Component {
         <View>
           <Text className="express_title">门店报警排行榜</Text>
         </View>
-
-        <AtGrid data={this.state.tempData} columnNum={3} mode="rect"/>
+        <View>
+          <View className='txTeam'>
+            <Text>排名</Text>
+            <Text>门店</Text>
+            <Text>报警量</Text>
+          </View>
+          {/*{*/}
+          {/*  // this.state*/}
+          {/*}*/}
+          {/*{this.state}*/}
+        </View>
 
         <View>
           <Text className="express_title">趋势分析</Text>
