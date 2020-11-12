@@ -11,6 +11,7 @@ import './index.scss'
 import * as echarts from '../../components/ec-canvas/echarts'
 import ServiceImpl from "../../service/ServiceImpl";
 import UserData from "../../core/bean/UserData";
+import DevicesCount from "../../core/bean/DevicesCount";
 
 
 var alertdata = [];
@@ -184,8 +185,27 @@ export default class Index extends Component {
 
   }
 
+  async getDeviceCount(){
+    let data = await ServiceImpl.getInstance().getDeviceCount() as DevicesCount
+    this.setState({
+      totalCount:data.totalCount
+    })
+  }
+
+ async  getAlertCount(){
+    let data = await ServiceImpl.getInstance().getAlertCount()
+
+   this.setState({
+     alertTotalCount:data['totalCount']
+   })
+   console.log(data)
+
+ }
+
   componentWillMount() {
     this.getCostData()
+    this.getDeviceCount()
+    this.getAlertCount()
     alertdata = [30, 92, 81, 74, 90, 30, 60, 80, 10]
 
   }
@@ -207,6 +227,8 @@ export default class Index extends Component {
     avgConfirmJobMs: '',
     recordCount: '',
     current: 0,
+    totalCount:0,
+    alertTotalCount:0,
     listdata: [1, 2, 15, 12, 45, 44],
 
     ec: {
@@ -226,7 +248,6 @@ export default class Index extends Component {
     })
   }
 
-
   render() {
     return (
       <View className='index'>
@@ -242,26 +263,26 @@ export default class Index extends Component {
 
           <View className="box_1">
             <Text className='content_style'>智能报警</Text>
-            <Text className='content_style'>123个</Text>
-            <Text className='content_style_data1'>50%⬆</Text>
+            <Text className='content_style'>{this.state.alertTotalCount}个</Text>
+            {/*<Text className='content_style_data1'>50%⬆</Text>*/}
           </View>
 
           <View className="box_1">
             <Text className='content_style'>报警器</Text>
-            <Text className='content_style'>12个</Text>
-            <Text className='content_style_data2'>30%⬆</Text>
+            <Text className='content_style'>{this.state.totalCount}个</Text>
+            {/*<Text className='content_style_data2'>30%⬆</Text>*/}
           </View>
 
           <View className="box_1">
             <Text className='content_style'>来电报警</Text>
-            <Text className='content_style'>123个</Text>
-            <Text className='content_style_data3'>50%⬆</Text>
+            <Text className='content_style'>0个</Text>
+            {/*<Text className='content_style_data3'>50%⬆</Text>*/}
           </View>
 
           <View className="box_1">
             <Text className='content_style'>已处置报警</Text>
             <Text className='content_style'>123个</Text>
-            <Text className='content_style_data4'>-50%⬇</Text>
+            {/*<Text className='content_style_data4'>-50%⬇</Text>*/}
           </View>
         </View>
 
@@ -303,20 +324,20 @@ export default class Index extends Component {
           </View>
         </View>
 
-        <View>
-          <Text className="express_title">门店报警排行榜</Text>
-        </View>
-        <View>
-          <View className='txTeam'>
-            <Text>排名</Text>
-            <Text>门店</Text>
-            <Text>报警量</Text>
-          </View>
+        {/*<View>*/}
+        {/*  <Text className="express_title">门店报警排行榜</Text>*/}
+        {/*</View>*/}
+        {/*<View>*/}
+          {/*<View className='txTeam'>*/}
+          {/*  <Text>排名</Text>*/}
+          {/*  <Text>门店</Text>*/}
+          {/*  <Text>报警量</Text>*/}
+          {/*</View>*/}
           {/*{*/}
           {/*  // this.state*/}
           {/*}*/}
           {/*{this.state}*/}
-        </View>
+        {/*</View>*/}
 
         <View>
           <Text className="express_title">趋势分析</Text>

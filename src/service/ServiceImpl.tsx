@@ -140,6 +140,34 @@ export default class ServiceImpl extends BaseServiceImpl {
     })
   }
 
+  getDeviceCount(){
+    return new Promise((resolve,reject) => {
+      const option: any = this.getOption();
+      option.url = UrlConfig.GET_DEVICE_COUNT
+      Taro.request(option).then((res) => {
+        if (res.statusCode < 300) {
+          resolve(res.data);
+        } else {
+          reject(res);
+        }
+      });
+    })
+  }
+
+  getAlertCount(){
+    return new Promise((resolve,reject) => {
+      const option: any = this.getOption();
+      option.url = UrlConfig.GET_ALERT_COUNT
+      Taro.request(option).then((res) => {
+        if (res.statusCode < 300) {
+          resolve(res.data);
+        } else {
+          reject(res);
+        }
+      });
+    })
+
+  }
 };
 
 

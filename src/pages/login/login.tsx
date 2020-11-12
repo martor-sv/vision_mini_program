@@ -77,7 +77,7 @@ export default class Login extends Component {
     return (
       <View className='index'>
         <AtInput
-          className={'input1'}
+          className='input1'
           name='value1'
           title='账号'
           type='text'
@@ -87,7 +87,7 @@ export default class Login extends Component {
         />
 
         <AtInput
-          className={'input'}
+          className='input'
           name='value2'
           title='密码'
           type='password'
@@ -96,7 +96,7 @@ export default class Login extends Component {
           onChange={this.handlePwdClick.bind(this)}
         />
 
-        <AtButton className={'btn_login'} type='primary' onClick={this.login.bind(this)}>登陆</AtButton>
+        <AtButton className='btn_login' type='primary' onClick={this.login.bind(this)}>登陆</AtButton>
       </View>
     )
   }
