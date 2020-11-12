@@ -1,12 +1,10 @@
 import Taro from "@tarojs/taro";
 import BaseServiceImpl from "./BaseServiceImpl";
-import {Service} from "./Service";
 import UrlConfig from "../common/UrlConfig";
 import GlobalUserInfo from "../common/GlobalUserInfo";
+import {Constant} from "../common/Constant";
 
-
-
-export default class ServiceImpl extends BaseServiceImpl implements Service {
+export default class ServiceImpl extends BaseServiceImpl {
   private static serviceImpl: ServiceImpl;
 
   private constructor() {
@@ -17,6 +15,22 @@ export default class ServiceImpl extends BaseServiceImpl implements Service {
     if (ServiceImpl.serviceImpl == null) {
       ServiceImpl.serviceImpl = new ServiceImpl();
     }
+    const interceptor =function (chain) {
+      const requestParams = chain.requestParams
+      const { method, data, url } = requestParams
+      console.log(`http ${method || 'GET'} --> ${url} data: `, data)
+      return chain.proceed(requestParams)
+        .then(res => {
+          if (res.statusCode == 422){
+            Taro.clearStorage()
+            Taro.redirectTo({
+              url:'../login/login'
+            })
+          }
+          return res
+        })
+    }
+    Taro.addInterceptor(interceptor)
     return ServiceImpl.serviceImpl;
   }
 

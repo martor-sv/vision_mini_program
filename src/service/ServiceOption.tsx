@@ -13,12 +13,6 @@ export default class ServiceOption {
   // 请求参数
   data: any = {};
   method: string = 'GET';
-  // success(res){
-  //   console.log(res.statusCode)
-  //   if (res.statusCode == 422){
-  //     // this.reLogin()
-  //   }
-  // }
 
   // async reLogin() {
   //   let result: any = await ServiceImpl.getInstance().login()
