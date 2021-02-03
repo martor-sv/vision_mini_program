@@ -4,9 +4,10 @@
 export default class UrlConfig {
 
   // public static domain = `https://www.hy01.top`;
-  public static domain = `https://www.silverwind.tech`;
+  // public static domain = `https://www.silverwind.tech`;
+  public static domain = `https://iacp.truthvision.com`;
 
-  public static baseUrl: string             = `${UrlConfig.domain}/test`;
+  public static baseUrl: string             = `${UrlConfig.domain}/alert-operation`;
   // public static baseUrl: string            = `${UrlConfig.domain}/dev`;
 
   //登录
