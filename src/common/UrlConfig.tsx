@@ -9,6 +9,7 @@ export default class UrlConfig {
 
   public static baseUrl: string             = `${UrlConfig.domain}/alert-operation`;
   // public static baseUrl: string            = `${UrlConfig.domain}/dev`;
+  // public static baseUrl: string            = `http://27.115.4.34:58700`;
 
   //登录
   public static login                       = `${UrlConfig.baseUrl}/api1/security/auth/oauth2/token`;
@@ -26,5 +27,5 @@ export default class UrlConfig {
    public  static GET_DEVICE_COUNT          = `${UrlConfig.baseUrl}/api1/device/count`;
 
    //获取报警数量
-  public static   GET_ALERT_COUNT       = `${UrlConfig.baseUrl}/api1/alert-business/job/alert-handler/alert/count`;
+  public static   GET_ALERT_COUNT           = `${UrlConfig.baseUrl}/api1/alert-business/job/alert-handler/alert/count`;
 }

@@ -77,9 +77,9 @@ export default class AlertJobItem extends Component {
       <View className="box" onClick={this.handleClick.bind(this)}>
         <Text className="txt">出警通知</Text>
         <Text className="txtTitle">报警门店</Text>
-        <Text className="shopTitle">{this.props.alertHandlerJob.shop.name}</Text>
+        <Text className="shopTitle">{this.props.alertHandlerJob.assets?.name ?? "人工工单"}</Text>
         <View className="bd">
-          <Text className="shopTitle_1">门店地址&nbsp;&nbsp;&nbsp;{this.address}</Text>
+          <Text className="shopTitle_1">门店地址&nbsp;&nbsp;&nbsp;{this.props.alertHandlerJob.landmarkList[0].addr}</Text>
           <Text className="title">报警时间&nbsp;&nbsp;&nbsp;{this.props.alertHandlerJob.createTime}</Text>
         </View>
         <View className="main">

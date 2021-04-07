@@ -11,7 +11,6 @@ import {Constant} from "../../../common/Constant";
 import ImageUtil from "../../../utils/ImageUtil";
 import IdName from "../../../core/bean/IdName";
 import User from "../../../core/bean/User";
-import AlertHandleJobEvent from "../../../core/bean/AlertHandleJobEvent";
 
 export default class AlertJobDetail extends Component {
 
@@ -44,31 +43,31 @@ export default class AlertJobDetail extends Component {
     // Array<AlertHandleJobEvent>
 
     //已接警的名单
-    let assignJobNames=''
+    let assignJobNames = ''
     //已到达的名单
-    let arriveJobNames=''
+    let arriveJobNames = ''
     //出警结束的名单
-    let completeJobNames=''
+    let completeJobNames = ''
     //工单结束的名单
-    let closeJobNames=''
+    let closeJobNames = ''
 
 
     this.state.alertHandlerJob.handleLine.map((value, index) => {
       switch (value.action) {
         case Constant.EVENT_ACTION_CONFIRM: {
-          assignJobNames+=""+value.handler.name
+          assignJobNames += "" + value.handler.name
           break
         }
         case Constant.EVENT_ACTION_CONFIRMARRIVED: {
-          arriveJobNames+=""+value.handler.name
+          arriveJobNames += "" + value.handler.name
           break
         }
         case Constant.EVENT_ACTION_COMPLETEJOB: {
-          completeJobNames+=""+value.handler.name
+          completeJobNames += "" + value.handler.name
           break
         }
         case Constant.EVENT_ACTION_CLOSEJOB: {
-          closeJobNames+=""+value.handler.name
+          closeJobNames += "" + value.handler.name
           break
         }
       }
@@ -81,13 +80,13 @@ export default class AlertJobDetail extends Component {
         switch (value.action) {
           case Constant.EVENT_ACTION_ASSIGNED: {
             this.state.handleLine.push({
-              title: "智能报警  "+value.reportTime.substring(0,19),
+              title: "智能报警  " + value.reportTime.substring(0, 19),
               content: [this._getObjectName(value.objectList)],
               icon: 'check-circle',
               color: 'blue'
             },)
             this.state.handleLine.push({
-              title: "通知出警  "+value.reportTime.substring(0,19),
+              title: "通知出警  " + value.reportTime.substring(0, 19),
               content: [this._getObjectName(value.objectList)],
               icon: 'check-circle',
               color: 'blue'
@@ -96,7 +95,7 @@ export default class AlertJobDetail extends Component {
           }
           case Constant.EVENT_ACTION_CONFIRM: {
             this.state.handleLine.push({
-              title: "已接警 "+value.reportTime.substring(0,19),
+              title: "已接警 " + value.reportTime.substring(0, 19),
               content: [assignJobNames],
               icon: 'check-circle',
               color: 'blue'
@@ -105,7 +104,7 @@ export default class AlertJobDetail extends Component {
           }
           case Constant.EVENT_ACTION_CONFIRMARRIVED: {
             this.state.handleLine.push({
-              title: "到达现场  "+value.reportTime.substring(0,19),
+              title: "到达现场  " + value.reportTime.substring(0, 19),
               content: [arriveJobNames],
               icon: 'check-circle',
               color: 'blue'
@@ -114,7 +113,7 @@ export default class AlertJobDetail extends Component {
           }
           case Constant.EVENT_ACTION_COMPLETEJOB: {
             this.state.handleLine.push({
-              title: "出警结束  "+value.reportTime.substring(0,19),
+              title: "出警结束  " + value.reportTime.substring(0, 19),
               content: [completeJobNames],
               icon: 'check-circle',
               color: 'blue'
@@ -123,7 +122,7 @@ export default class AlertJobDetail extends Component {
           }
           case Constant.EVENT_ACTION_CLOSEJOB: {
             this.state.handleLine.push({
-              title: "结案确认  "+value.reportTime.substring(0,19),
+              title: "结案确认  " + value.reportTime.substring(0, 19),
               content: [closeJobNames],
               icon: 'check-circle',
               color: 'blue'
@@ -143,18 +142,18 @@ export default class AlertJobDetail extends Component {
   }
 
 
-  _getObjectName(objectList:Array<IdName>):String{
-    let names=""
+  _getObjectName(objectList: Array<IdName>): String {
+    let names = ""
     objectList.map((value, index) => {
-      names+=" "+value.name
+      names += " " + value.name
     })
     return names
   }
 
-  _getAcceptJobNames(guardList: Array<User>):String{
-    let names=""
-    guardList.map((value, index) =>{
-      names+=" "+value.name
+  _getAcceptJobNames(guardList: Array<User>): String {
+    let names = ""
+    guardList.map((value, index) => {
+      names += " " + value.name
     })
     return names
   }

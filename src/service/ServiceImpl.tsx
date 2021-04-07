@@ -51,7 +51,7 @@ export default class ServiceImpl extends BaseServiceImpl {
           reject(res);
         }
       });
-    })
+    }).catch(error => console.log('caught', error))
   }
 
   getAlertJobList(){

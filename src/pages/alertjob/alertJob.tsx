@@ -25,7 +25,7 @@ export default class AlertJob extends Component {
   componentWillMount() {
     if (Taro.getStorageSync(Constant.token) == null || Taro.getStorageSync(Constant.token) == "") {
       Taro.redirectTo({
-        url:'../login/login'
+        url: '../login/login'
       })
       return
     }
