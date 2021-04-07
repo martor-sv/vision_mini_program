@@ -19,15 +19,13 @@ export default class AlertJobDetail extends Component {
     let result = await ServiceImpl.getInstance().getStoreDetail(jobId)
 
     this.setState({
-      alertHandlerJob: result['jobList'][0] as AlertHandlerJob,
-      // handleLine: this.state.alertHandlerJob.handleLine
+      alertHandlerJob: result['jobList'][0],
     })
+
+    console.log(this.state.alertHandlerJob.assets.name)
 
     let data = ImageUtil.getImageUrl(this.state.alertHandlerJob.alerterList && this.state.alertHandlerJob.alerterList[0].imageList[0])
 
-    // console.log(data.then((value => {
-    //   console.log(value)
-    // })))
 
     data.then((value => {
       this.setState({
@@ -161,6 +159,7 @@ export default class AlertJobDetail extends Component {
   componentWillMount() {
     console.log(Taro.getCurrentInstance().router.params['jobId'])
     this.getStoreDetail(Taro.getCurrentInstance().router.params['jobId'])
+
   }
 
   componentDidMount() {
@@ -176,12 +175,6 @@ export default class AlertJobDetail extends Component {
   componentDidHide() {
   }
 
-  onChange() {
-    // this.setState({
-    //   current
-    // })
-  }
-
   state = {
     alertHandlerJob: AlertHandlerJob,
     handleLine: [],
@@ -194,12 +187,12 @@ export default class AlertJobDetail extends Component {
       <View id='box'>
         <Image className='img_main'
                src={`${this.state.image}`}/>
-        <Text className="title">报警门店:{this.state.alertHandlerJob.shop && this.state.alertHandlerJob.shop.name}</Text>
+        <Text className="title">报警门店:{this.state.alertHandlerJob?.assets?.name}</Text>
         <View className='line'/>
-        <Text className="content">门店地址 {}</Text>
-        <Text className="content">报警时间 {this.state.alertHandlerJob.createTime}</Text>
+        <Text className="content">门店地址 {this.state.alertHandlerJob?.landmarkList?.[0]?.addr}</Text>
+        <Text className="content">报警时间 {this.state.alertHandlerJob?.createTime}</Text>
         <Text
-          className="content">当前状态 {Constant.getCurrentStatusName(this.state.alertHandlerJob.status && this.state.alertHandlerJob.status.name)}</Text>
+          className="content">当前状态 {Constant.getCurrentStatusName(this.state.alertHandlerJob && this.state.alertHandlerJob?.status?.name)}</Text>
         <View className='space'/>
         <View className="box_1">
           <View className='title_pre'/>

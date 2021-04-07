@@ -21,7 +21,7 @@ export default class UrlConfig {
   public static   GET_COST_DATA             = `${UrlConfig.baseUrl}/api1/alert-business/statistics/alert-handler-job/costData`;
 
   //获取图片
-  public static   GET_IMAGE_DATA            = `${UrlConfig.baseUrl}/api1/file/image?url=`;
+  public static   GET_IMAGE_DATA            = `${UrlConfig.baseUrl}/api1/file/image?key=`;
 
   //获取设备的数量
    public  static GET_DEVICE_COUNT          = `${UrlConfig.baseUrl}/api1/device/count`;

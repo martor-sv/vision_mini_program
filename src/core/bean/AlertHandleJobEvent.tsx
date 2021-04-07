@@ -5,13 +5,14 @@ import User from "./User";
 import Footprint from "./Footprint";
 
 export default class AlertHandleJobEvent {
-  handler: User
+  id:String
+  jobId:String
+  handler: IdName
   reportTime: String
+  handleTime: String
   action: String
-  footprint: Footprint
-  landMark: Landmark
-  content: String
   objectList: Array<IdName>
+  content: String
   aiReview: String
   aiMessage: String
   audioList: Array<String>
